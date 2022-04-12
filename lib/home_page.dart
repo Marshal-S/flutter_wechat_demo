@@ -1,6 +1,3 @@
-
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_wechat_demo/chat/chat.dart';
 import 'package:flutter_wechat_demo/contact/contact.dart';

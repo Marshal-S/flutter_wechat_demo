@@ -1,6 +1,5 @@
 
 import 'package:flutter/material.dart';
-
 import '../item_cell.dart';
 
 class Mine extends StatelessWidget {

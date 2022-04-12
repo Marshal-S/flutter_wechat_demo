@@ -13,6 +13,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       //去掉debug自选
       debugShowCheckedModeBanner: false,
+      //Android任务管理器界面title，可以设置称自己的app名字
       title: "Flutter Demo",
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
