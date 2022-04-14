@@ -49,15 +49,26 @@ class _ChatListState extends State<ChatList>
   Widget itemForRow(BuildContext context, int index) {
     //这个就是跟微信首页聊天的一样，可以设置图片，标题内容
     final item = list[index];
-    return ListTile(
-      title: Text(item.name,
-          style: const TextStyle(fontSize: 12, color: Colors.black87)),
-      subtitle: Text(
-        item.message,
-        style: const TextStyle(fontSize: 12, color: Colors.black87),
-        overflow: TextOverflow.ellipsis, //设置省略效果
-      ),
-      leading: CircleAvatar(backgroundImage: NetworkImage(item.imgUrl)),
+    return Column(
+      children: [
+        ListTile(
+          title: Text(item.name,
+              style: const TextStyle(fontSize: 12, color: Colors.black87)),
+          subtitle: Text(
+            item.message,
+            style: const TextStyle(fontSize: 12, color: Colors.black87),
+            overflow: TextOverflow.ellipsis, //设置省略效果
+          ),
+          leading: CircleAvatar(backgroundImage: NetworkImage(item.imgUrl)),
+        ),
+        Row(
+          children: [
+            //两个Container都可以
+            Container(width: 46, height: 1, color: Colors.white),
+            Expanded(child: Container(height: 1, color: const Color.fromRGBO(0xe1, 0xe1, 0xe1, 1))),
+          ],
+        )
+      ],
     );
   }
 

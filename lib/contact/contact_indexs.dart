@@ -35,7 +35,9 @@ class _ContactIndexsState extends State<ContactIndexs> {
     // final index = (length / letterHeight).floor(); //或者这个也行
     //由于往上滑或者往下，会出现越界，处理一下越界问题
     index = index.clamp(0, length - 1); //可以通过 clamp 方法处理数字越界问题
-    if (index != lastIndex) widget.onUpdateCallback(widget.letterList[index], index);
+    if (index != lastIndex) {
+      widget.onUpdateCallback(widget.letterList[index], index);
+    }
     lastIndex = index;
 
     //计算气泡，内部使用，还没计算
@@ -46,7 +48,8 @@ class _ContactIndexsState extends State<ContactIndexs> {
     final halfHeight = height / 2;
     //由于中心点是0，上下是-1，所以计算出索引，要用halfHeight才是相当于中心点的坐标
     //而物体总移动，还需要抛去自己一半的高度(顶部对齐-1，中心对齐0)，所以少移动了半个物体的高度
-    final radioY = (halfHeight - firstLetterCy - index * letterHeight) / (halfHeight - 30);
+    final radioY =
+        (halfHeight - firstLetterCy - index * letterHeight) / (halfHeight - 30);
 
     setState(() {
       bubbleAligmentY = -radioY;
@@ -63,70 +66,71 @@ class _ContactIndexsState extends State<ContactIndexs> {
       words.add(wordWidget);
     }
     return Positioned(
-        top: 0,
-        right: 0,
-        bottom: 0,
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            //左边气泡
-            Container(
-              alignment: Alignment(-0.15, bubbleAligmentY),
-              child: lastIndex > -1
-                  ? Stack(
-                      alignment: const Alignment(-0.15, 0),
-                      children: [
-                        Image.asset(
-                          'images/气泡.png',
-                          width: 60,
-                          height: 60,
-                        ),
-                        Text(
-                          widget.letterList[lastIndex],
-                          style: const TextStyle(fontSize: 18),
-                        )
-                      ],
+      top: 0,
+      right: 0,
+      bottom: 0,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          //左边气泡
+          Container(
+            alignment: Alignment(-0.15, bubbleAligmentY),
+            child: lastIndex > -1
+              ? Stack(
+                  alignment: const Alignment(-0.15, 0),
+                  children: [
+                    Image.asset(
+                      'images/气泡.png',
+                      width: 60,
+                      height: 60,
+                    ),
+                    Text(
+                      widget.letterList[lastIndex],
+                      style: const TextStyle(fontSize: 18),
                     )
-                  : null,
-            ),
-            //右边索引
-            GestureDetector(
-              onVerticalDragUpdate: (DragUpdateDetails details) {
-                //拖拽更新，pan实际走的也是这个，不信看看参数😂
-                //世界坐标details.globalPosition
-                //本地坐标details.localPosition
-                onUpdate(details.localPosition.dy);
-              },
-              onVerticalDragStart: (DragStartDetails details) {
-                //拖拽点击时
-                onUpdate(details.localPosition.dy);
-              },
-              onVerticalDragEnd: (DragEndDetails details) {
-                //拖拽结束
-                lastIndex = -1;
-                setState(() {});
-              },
-              //处理点击的
-              onTapDown: (TapDownDetails details) {
-                onUpdate(details.localPosition.dy);
-              },
-              onTapCancel: () {
-                lastIndex = -1;
-                setState(() {});
-              },
-              onTapUp: (TapUpDetails details) {
-                lastIndex = -1;
-                setState(() {});
-              },
-              child: SizedBox(
-                width: 20,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: words,
-                ),
+                  ],
+                )
+              : null,
+          ),
+          //右边索引
+          GestureDetector(
+            onVerticalDragUpdate: (DragUpdateDetails details) {
+              //拖拽更新，pan实际走的也是这个，不信看看参数😂
+              //世界坐标details.globalPosition
+              //本地坐标details.localPosition
+              onUpdate(details.localPosition.dy);
+            },
+            onVerticalDragStart: (DragStartDetails details) {
+              //拖拽点击时
+              onUpdate(details.localPosition.dy);
+            },
+            onVerticalDragEnd: (DragEndDetails details) {
+              //拖拽结束
+              lastIndex = -1;
+              setState(() {});
+            },
+            //处理点击的
+            onTapDown: (TapDownDetails details) {
+              onUpdate(details.localPosition.dy);
+            },
+            onTapCancel: () {
+              lastIndex = -1;
+              setState(() {});
+            },
+            onTapUp: (TapUpDetails details) {
+              lastIndex = -1;
+              setState(() {});
+            },
+            child: SizedBox(
+              width: 20,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: words,
               ),
             ),
-          ],
-        ));
+          ),
+        ],
+      ),
+    );
   }
 }

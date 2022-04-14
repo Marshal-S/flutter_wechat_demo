@@ -53,7 +53,7 @@ class Mine extends StatelessWidget {
                       ),
 
                       Container(
-                          margin: const EdgeInsets.only(left: 6),
+                          margin: const EdgeInsets.only(right: 6),
                           child: Image.asset(
                             "images/icon_right.png",
                             width: 12,

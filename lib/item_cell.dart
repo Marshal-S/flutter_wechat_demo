@@ -8,7 +8,7 @@ class ItemCell extends StatefulWidget {
   final String? subText;
   final bool hasLine;
 
-  const ItemCell({Key? key, required this.imageUrl, required this.text, this.subImageUrl, this.subText, this.hasLine = false}) : super(key: key);
+  const ItemCell({Key? key, required this.imageUrl, required this.text, this.subImageUrl, this.subText, this.hasLine = true}) : super(key: key);
 
   @override
   State<ItemCell> createState() => _ItemCellState();
@@ -141,7 +141,7 @@ class _ItemCellState extends State<ItemCell> {
             children: [
               //两个Container都可以
               Container(width: 46, height: 1, color: Colors.white),
-              Container(height: 1, color: Colors.grey)
+              Expanded(child: Container(height: 1, color: const Color.fromRGBO(0xe1, 0xe1, 0xe1, 1))),
             ],
           ) :
           Container(height: 1, color: Colors.white)

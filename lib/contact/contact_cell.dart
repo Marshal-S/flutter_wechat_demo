@@ -7,7 +7,7 @@ class ContactCell extends StatefulWidget {
   final String text;
   final bool isShowLetter;
   final bool hasLine;
-  const ContactCell({Key? key, required this.imageUrl, required this.text, this.letter = '', this.isShowLetter = false, this.hasLine = false}) : super(key: key);
+  const ContactCell({Key? key, required this.imageUrl, required this.text, this.letter = '', this.isShowLetter = false, this.hasLine = true}) : super(key: key);
 
   @override
   State<ContactCell> createState() => _ContactCellState();
@@ -104,12 +104,12 @@ class _ContactCellState extends State<ContactCell> {
               children: [
                 //两个Container都可以
                 Container(width: 46, height: 1, color: Colors.white),
-                Container(height: 1, color: Colors.grey)
+                Expanded(child: Container(height: 1, color: const Color.fromRGBO(0xe1, 0xe1, 0xe1, 1))),
               ],
             ) :
             Container(height: 1, color: Colors.white)
           ],
-        )
+        ),
     );
   }
 }
