@@ -101,14 +101,14 @@ class _ContactState extends State<Contact> with AutomaticKeepAliveClientMixin {
         actions: [
           TextButton(
             onPressed: () {
-              // Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> const AddFriend(title: "添加朋友")));
+              Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> const AddFriend(title: "添加朋友")));
 
               //加入跳转动画的案例
-              Navigator.push(context, PageRouteBuilder(pageBuilder: (BuildContext context, Animation<double> animation,
-                  Animation secondaryAnimation) => ScaleTransition(
-                  scale: animation,
-                  alignment: Alignment.centerLeft,
-                  child: const AddFriend(title: "添加朋友"))));
+              // Navigator.push(context, PageRouteBuilder(pageBuilder: (BuildContext context, Animation<double> animation,
+              //     Animation secondaryAnimation) => ScaleTransition(
+              //     scale: animation,
+              //     alignment: Alignment.centerLeft,
+              //     child: const AddFriend(title: "添加朋友"))));
             },
             child: Image.asset(
               "images/添加朋友.png",
